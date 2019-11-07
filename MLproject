@@ -1,0 +1,12 @@
+name: tutorial
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      estimators: {type: int, default: 100}
+      min-samples-leaf: {type: int, default: 2}
+      train: {type: path, default: '/home/ec2-user/SageMaker/mlflow_demo'}
+      test: {type: path, default: '/home/ec2-user/SageMaker/mlflow_demo'}
+    command: "python script.py --n-estimators {estimators} --min-samples-leaf {min-samples-leaf} --train {train} --test {test}"
