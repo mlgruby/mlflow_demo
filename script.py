@@ -66,23 +66,19 @@ if __name__ =='__main__':
         print('validating model')
         y_test_predict = model.predict(X_test)
         abs_err = np.abs(y_test_predict - y_test)
-        rmse = (np.sqrt(mean_squared_error(y_test_predict, y_test)))
-        r2 = r2_score(y_test, y_test_predict)
-        print('rmse: {}, r2_score: {}'.format(rmse, r2))
-        mlflow.log_metric('rmse', rmse)
-        mlflow.log_metric('r2', r2)
+#         rmse = (np.sqrt(mean_squared_error(y_test_predict, y_test)))
+#         r2 = r2_score(y_test, y_test_predict)
+#         print('rmse: {}, r2_score: {}'.format(rmse, r2))
+#         mlflow.log_metric('rmse', rmse)
+#         mlflow.log_metric('r2', r2)
 
 
         # print couple perf metrics
-#         for q in [10, 50, 90]:
-#             print('AE-at-' + str(q) + 'th-percentile: '
-#                   + str(np.percentile(a=abs_err, q=q)))
-#             mlflow.log_metric('AE-at-' + str(q) + 'th-percentile', np.percentile(a=abs_err, q=q))
+        for q in [10, 50, 90]:
+            print('AE-at-' + str(q) + 'th-percentile: '
+                  + str(np.percentile(a=abs_err, q=q)))
+            mlflow.log_metric('AE-at-' + str(q) + 'th-percentile', np.percentile(a=abs_err, q=q))
 
-        # persist model
-    #     path = os.path.join(args.model_dir, "model.joblib")
-    #     joblib.dump(model, path)
-    #     print('model persisted at ' + path)
         print(args.min_samples_leaf)
         
         mlflow.log_param("n_estimators", args.n_estimators)
