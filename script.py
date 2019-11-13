@@ -84,3 +84,4 @@ if __name__ =='__main__':
         mlflow.log_param("n_estimators", args.n_estimators)
         mlflow.log_param("min_samples_leaf", args.min_samples_leaf)
         log_model(model, "model")
+        mlflow.log_artifcat()
